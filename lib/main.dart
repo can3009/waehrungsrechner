@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:noob_flutter/gui/ansicht/home_viev.dart';
+import 'data/models/models.dart';
 
 void main() {
   runApp(const MyApp());
