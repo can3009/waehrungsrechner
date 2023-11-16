@@ -1,20 +1,16 @@
 import 'dart:developer';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:waehrungsrechner/data/models/currency/currency.dart';
 import 'package:waehrungsrechner/data/models/models.dart';
+import 'package:waehrungsrechner/logic/app_state_provider.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  Country fromCountry = datas[2];
-  Country toCountry = datas[1];
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appStateProvider = ref.read(refAppStateProvider.notifier);
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -29,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
           child: Padding(
             padding: const EdgeInsets.all(30.0),
             child: Column(children: [
-              _buildCurrencyView(fromCountry),
+              CountryCard(fromTo: 'from'),
               const SizedBox(
                 height: 35,
               ),
@@ -57,41 +53,38 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: Colors.indigo[50],
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: Colors.indigo)),
-                    child: const Row(
-                      children: [
-                        Text(
-                          'Switch Currencies',
-                          style: TextStyle(
-                              color: Colors.indigo,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500),
-                        )
-                      ],
+                  InkWell(
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.indigo[50],
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.indigo)),
+                      child: const Row(
+                        children: [
+                          Text(
+                            'Switch Currencies',
+                            style: TextStyle(
+                                color: Colors.indigo,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500),
+                          )
+                        ],
+                      ),
                     ),
+                    onTap: () {
+                      appStateProvider.switchFromTo();
+                    },
                   ),
                 ],
               ),
               const SizedBox(
                 height: 30,
               ),
-              _buildCurrencyView(toCountry)
+              CountryCard(fromTo: 'to')
             ]),
           ),
         ));
-  }
-
-  Widget _buildCurrencyView(Country? country) {
-    log('$country');
-    if (country == null) {
-      return const Text('diese land wurde nicht gefunden');
-    }
-    return CountryCard(country: country);
   }
 }
 
