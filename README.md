@@ -1,4 +1,4 @@
-# noob_flutter
+# waehrungsrechner
 
 A new Flutter project.
 

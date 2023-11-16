@@ -1,6 +1,6 @@
 {
-    "name": "noob_flutter",
-    "short_name": "noob_flutter",
+    "name": "waehrungsrechner",
+    "short_name": "waehrungsrechner",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

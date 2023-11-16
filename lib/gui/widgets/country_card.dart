@@ -32,7 +32,8 @@ class CountryCard extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(5),
-                    child: Image.network(
+                    // child: Image.asset('gb-flag.png'),
+                    child: Image.asset(
                       country.urlFlag,
                       height: 50,
                       width: 50,
@@ -45,12 +46,12 @@ class CountryCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(country.name,
+                        Text(country.currency.name,
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 17,
                                 fontWeight: FontWeight.w600)),
-                        Text(country.currency,
+                        Text(country.currency.symbol,
                             style: const TextStyle(
                                 color: Color.fromARGB(255, 46, 45, 45),
                                 fontSize: 15,
@@ -74,7 +75,7 @@ class CountryCard extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: '0.0',
                   suffixIcon: Text(
-                    country.currency,
+                    country.currency.symbol,
                     style: const TextStyle(fontSize: 25, color: Colors.grey),
                   ),
                   suffixIconConstraints:

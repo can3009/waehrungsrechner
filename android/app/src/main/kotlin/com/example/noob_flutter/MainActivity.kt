@@ -1,4 +1,4 @@
-package com.example.noob_flutter
+package com.example.waehrungsrechner
 
 import io.flutter.embedding.android.FlutterActivity
 
