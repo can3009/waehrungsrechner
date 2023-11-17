@@ -8,6 +8,7 @@ import 'package:waehrungsrechner/data/models/currency/currency.dart';
 final refAppStateProvider =
     NotifierProvider<AppStateProvider, AppState>(() => AppStateProvider());
 
+//!
 class AppStateProvider extends Notifier<AppState> {
   @override
   AppState build() {
@@ -64,12 +65,17 @@ class AppStateProvider extends Notifier<AppState> {
     );
   }
 
+//! Switchfromto Methode Tauscht die Ausgangs und Zielwährung aus,
+//! Indem sie den Zustand mit den neuen werten aktualisiert.
   void switchFromTo() {
     final newTo = state.from;
     final newFrom = state.to;
     state = state.copyWith(to: newTo, from: newFrom);
   }
 
+//! Methode aktualisiert den Eingabewert basierend auf einem übergebenen String
+//! Der String kann Kommas oder Punkte als Dezimaltrennzeichen erhalten.
+//! die Methode versucht, ihn in einen Gleitkommawert umzuwandeln
   void setInputByString(String value) {
     final replacedCommas = value.replaceAll(',', '.');
     var newInput = double.tryParse(replacedCommas) ?? 0.0;

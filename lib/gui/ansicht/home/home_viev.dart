@@ -33,23 +33,24 @@ class HomeView extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 50,
-                    width: 50,
+                    height: 55,
+                    width: 100,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(2),
+                        color: Colors.indigo[100],
+                        borderRadius: BorderRadius.circular(100),
                         boxShadow: [
                           BoxShadow(
                               color: Colors.indigo.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3))
+                              spreadRadius: 4,
+                              blurRadius: 100,
+                              offset: const Offset(2, 1))
                         ]),
                     child: const Center(
+                      //!like button
                       child: Text(
-                        '=',
+                        '❤',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w600),
+                            fontSize: 35, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
@@ -57,7 +58,7 @@ class HomeView extends ConsumerWidget {
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(
-                          color: Colors.indigo[50],
+                          color: Colors.indigo[100],
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: Colors.indigo)),
                       child: const Row(

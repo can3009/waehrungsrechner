@@ -10,12 +10,14 @@ import 'models.dart';
 
 // unit test schreiben .
 
+//! KLasse appstate
 class AppState {
   final String from;
   final String to;
   final List<Country> countries;
   final List<Currency> currencies;
   final double input;
+  //! KOnstruktor der klasse appstate
   AppState({
     required this.to,
     required this.from,
@@ -23,7 +25,7 @@ class AppState {
     required this.currencies,
     required this.input,
   });
-
+  //! Methode zur Ermittlung des Ursprunglandes(fromCountry)
   Country? get fromCountry {
     log('from: $from');
     for (final c in countries) {
@@ -34,6 +36,7 @@ class AppState {
     return null;
   }
 
+//! Methode zur Ermittlung der Ausgangwährung (fromCurrency)
   Currency? get fromCurrency {
     final country = fromCountry;
     if (country == null) return null;
@@ -45,6 +48,7 @@ class AppState {
     return null;
   }
 
+//! Methode zur Ermittlung des Ziellandes (toCountry)
   Country? get toCountry {
     for (final c in countries) {
       if (c.name == to) {
@@ -54,6 +58,7 @@ class AppState {
     return null;
   }
 
+//! Methode zur Ermittlung der Zielwährung (toCurrency)
   Currency? get toCurrency {
     final country = toCountry;
     log('toCuntry: $country');
@@ -66,6 +71,7 @@ class AppState {
     return null;
   }
 
+//! Methode zur Berechnung des umgerechneteten Betrag(output)
   double get output {
     final fromExchangeRate = fromCurrency?.exchangeRate;
     final toExchangeRate = toCurrency?.exchangeRate;
@@ -81,6 +87,7 @@ class AppState {
     return input / fromExchangeRate * toExchangeRate;
   }
 
+//! Methode zur Erstellung einer neuen Appstate mit geänderten Werten
   AppState copyWith({
     String? from,
     String? to,
@@ -97,8 +104,6 @@ class AppState {
       );
 }
 
-
-
 //function in der appstate benutzt wird
-//1 den input festlegen 
-//2 den output festlegen 
+//1 den input festlegen
+//2 den output festlegen
