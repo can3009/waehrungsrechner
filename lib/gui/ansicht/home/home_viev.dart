@@ -1,9 +1,10 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:waehrungsrechner/data/models/currency/currency.dart';
-import 'package:waehrungsrechner/data/models/models.dart';
 import 'package:waehrungsrechner/logic/app_state_provider.dart';
+
+import '../../widgets/country_card.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});

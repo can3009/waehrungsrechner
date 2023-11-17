@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:waehrungsrechner/data/models/currency/currency.dart';
+
 import 'package:waehrungsrechner/logic/app_state_provider.dart';
 
 import '/data/models/models.dart';
@@ -88,6 +88,18 @@ class CountryCard extends ConsumerWidget {
                   //   Icons.chevron_right,
                   //   color: Colors.grey,
                   // )
+                  DropdownButton(
+                      hint: Text(country.name),
+                      items: appState.countries
+                          .map((countrie) => DropdownMenuItem(
+                              // enabled: appState.from == appState.to,
+                              value: countrie,
+                              child: Text(countrie.name)))
+                          .toList(),
+                      onChanged: (country) {
+                        print(country);
+                        appStateProvider.setFromTo(country, fromTo);
+                      })
                 ],
               ),
               TextField(

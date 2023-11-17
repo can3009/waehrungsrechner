@@ -1,5 +1,3 @@
-import 'package:waehrungsrechner/data/models/currency/currency.dart';
-
 //!Country Klasse
 class Country {
   String name;

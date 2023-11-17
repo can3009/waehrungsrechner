@@ -1,9 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:waehrungsrechner/data/models/appstate.dart';
+
 import 'package:waehrungsrechner/data/models/country.dart';
-import 'package:waehrungsrechner/data/models/currency/currency.dart';
+
+import '../data/models/models.dart';
 
 final refAppStateProvider =
     NotifierProvider<AppStateProvider, AppState>(() => AppStateProvider());
@@ -81,5 +82,15 @@ class AppStateProvider extends Notifier<AppState> {
     var newInput = double.tryParse(replacedCommas) ?? 0.0;
     log('newInput: $newInput');
     state = state.copyWith(input: newInput);
+  }
+
+  void setFromTo(Country? country, String fromTo) {
+    if (fromTo == 'from') {
+      // currency = appState.fromCurrency;
+      state = state.copyWith(from: country?.name);
+    } else {
+      // currency = appState.toCurrency;
+      state = state.copyWith(to: country?.name);
+    }
   }
 }

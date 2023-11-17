@@ -1,7 +1,5 @@
 import 'dart:developer';
 
-import 'package:waehrungsrechner/data/models/currency/currency.dart';
-
 import 'models.dart';
 
 // Klassen erweitern und attribute und methoden
