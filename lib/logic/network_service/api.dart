@@ -1,0 +1,1 @@
+// GET https:v6.exchangerate-api.com/v6/4945b4ab0d130ca09dae7aa1 /quota;

@@ -1,12 +1,5 @@
 import 'dart:developer';
 
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:waehrungsrechner/data/models/appstate.dart';
-// import 'package:waehrungsrechner/data/models/country.dart';
-// import 'package:waehrungsrechner/data/models/currency.dart';
-
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../data/models/models.dart';
 
 final refAppStateProvider =
@@ -40,6 +33,12 @@ class AppStateProvider extends Notifier<AppState> {
           symbol: '£',
           exchangeRate: 0.78,
         ),
+        Currency(
+            name: 'Arabische Dirham',
+            code: 'AED',
+            isCypto: false,
+            symbol: 'د. إ',
+            exchangeRate: 0.25),
       ],
       to: 'EU',
       countries: [
@@ -64,6 +63,7 @@ class AppStateProvider extends Notifier<AppState> {
           //     'https://media.istockphoto.com/id/854115776/de/foto/flagge-von-england.jpg?s=612x612&w=0&k=20&c=2WZv964ANrMWsdGPnVlUJ56q49NKe6LpZUduHJtWT7M=',
           currency: 'GBP',
         ),
+        Country(name: 'Arabisch', urlFlag: 'urlFlag', currency: 'AED'),
       ],
       from: 'USA',
     );
