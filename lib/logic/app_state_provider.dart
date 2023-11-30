@@ -37,7 +37,7 @@ class AppStateProvider extends Notifier<AppState> {
           name: 'Pound',
           code: 'GBP',
           isCypto: false,
-          symbol: '€',
+          symbol: '£',
           exchangeRate: 0.78,
         ),
       ],

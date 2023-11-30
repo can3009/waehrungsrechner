@@ -13,19 +13,20 @@ class HomeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appStateProvider = ref.read(refAppStateProvider.notifier);
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 9,
-          title: const Text(
-            'Währungsumrechner',
-            style: TextStyle(color: Colors.black),
-          ),
+        elevation: 9,
+        title: const Text(
+          'Währungsumrechner',
+          style: TextStyle(color: Colors.black),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Column(children: [
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            children: [
               CountryCard(fromTo: 'from'),
               const SizedBox(
                 height: 35,
@@ -35,7 +36,7 @@ class HomeView extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      height: 300,
+                      height: 200,
                     ),
                   ),
                   InkWell(
@@ -43,21 +44,25 @@ class HomeView extends ConsumerWidget {
                       height: 55,
                       width: 100,
                       decoration: BoxDecoration(
-                          color: Colors.indigo[100],
-                          borderRadius: BorderRadius.circular(100),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.indigo.withOpacity(0.2),
-                                spreadRadius: 4,
-                                blurRadius: 100,
-                                offset: const Offset(2, 1))
-                          ]),
+                        color: Colors.indigo[100],
+                        borderRadius: BorderRadius.circular(100),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.indigo.withOpacity(0.2),
+                            spreadRadius: 4,
+                            blurRadius: 100,
+                            offset: const Offset(2, 1),
+                          )
+                        ],
+                      ),
                       child: const Center(
                         //!like button
                         child: Text(
                           '❤',
                           style: TextStyle(
-                              fontSize: 35, fontWeight: FontWeight.w600),
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
@@ -71,17 +76,19 @@ class HomeView extends ConsumerWidget {
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
-                            color: Colors.indigo[100],
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(color: Colors.indigo)),
+                          color: Colors.indigo[100],
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.indigo),
+                        ),
                         child: const Row(
                           children: [
                             Text(
                               'Switch Currencies',
                               style: TextStyle(
-                                  color: Colors.indigo,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w500),
+                                color: Colors.indigo,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                              ),
                             )
                           ],
                         ),
@@ -96,10 +103,32 @@ class HomeView extends ConsumerWidget {
               const SizedBox(
                 height: 30,
               ),
-              CountryCard(fromTo: 'to')
-            ]),
+              CountryCard(fromTo: 'to'),
+            ],
           ),
-        ));
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.currency_exchange),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: 'History',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        currentIndex: 0,
+        onTap: (index) {
+          // switch screen based on index
+        },
+      ),
+    );
   }
 }
 
