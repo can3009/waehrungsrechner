@@ -1,7 +1,7 @@
 import 'data/models/models.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
