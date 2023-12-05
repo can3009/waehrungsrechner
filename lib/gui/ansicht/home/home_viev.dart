@@ -1,7 +1,9 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:waehrungsrechner/gui/ansicht/drawer/app_drawer.dart';
-
+import 'package:waehrungsrechner/gui/ansicht/history_view/history.dart';
 import 'package:waehrungsrechner/logic/app_state_provider.dart';
 // import '/projects/waehrungsrechner/lib/logic/app_state_provider.dart';
 
@@ -29,7 +31,7 @@ class HomeView extends ConsumerWidget {
           padding: const EdgeInsets.all(30.0),
           child: Column(
             children: [
-              CountryCard(fromTo: 'from'),
+              const CountryCard(fromTo: 'from'),
               const SizedBox(
                 height: 35,
               ),
@@ -59,12 +61,10 @@ class HomeView extends ConsumerWidget {
                       ),
                       child: const Center(
                         //!like button
-                        child: Text(
-                          '❤',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w600,
-                          ),
+                        child: Icon(
+                          Icons.heart_broken_sharp,
+                          size: 30,
+                          color: Colors.red,
                         ),
                       ),
                     ),
@@ -105,37 +105,23 @@ class HomeView extends ConsumerWidget {
               const SizedBox(
                 height: 30,
               ),
-              CountryCard(fromTo: 'to'),
+              const CountryCard(fromTo: 'to'),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.currency_exchange),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorite',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'History',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.indigo[100],
-        currentIndex: 0,
-        onTap: (index) {
-          // switch screen based on index
+      floatingActionButton: FloatingActionButton.large(
+        //aktion für float button
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HistoryViewState()),
+          );
         },
+        child: const Icon(Icons.history_edu),
+        backgroundColor: Colors.indigo,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +10,7 @@ import '/data/models/models.dart';
 
 class CountryCard extends ConsumerWidget {
   final String fromTo;
+
   const CountryCard({
     required this.fromTo,
     super.key,

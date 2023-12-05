@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:waehrungsrechner/data/models/models.dart';
 
 class LogInPage extends StatefulWidget {

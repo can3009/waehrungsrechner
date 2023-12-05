@@ -1,5 +1,13 @@
-import 'package:waehrungsrechner/data/models/models.dart';
+// ignore_for_file: prefer_expression_function_bodies
 
+import 'package:flutter/material.dart';
+import 'package:waehrungsrechner/gui/ansicht/drawer/drawer_about_app.dart';
+
+import 'package:waehrungsrechner/gui/ansicht/drawer/drawer_fav.dart';
+import 'package:waehrungsrechner/gui/ansicht/drawer/drawer_graph.dart';
+import 'package:waehrungsrechner/gui/ansicht/drawer/drawer_language.dart';
+
+// ignore: public_member_api_docs
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -9,7 +17,7 @@ class MyDrawer extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.indigo,
+              color: Color.fromARGB(255, 157, 163, 197),
             ),
             child: Text(
               'Währungs-Rechner',
@@ -19,34 +27,49 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
           ),
+
           ListTile(
             title: const Text('Favorite'),
             onTap: () {
-              // Aktion für Item 1
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const DrawerFav()),
+                // Aktion für Item 1
+              );
+              // Navigator.pop(context);
             },
           ),
           ListTile(
             title: const Text('Graph '),
             onTap: () {
-              // Aktion für Item 2
-              //  icon: Icon(Icons.history);
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const DrawerGraph()),
+                // Aktion für Item 2
+              );
             },
           ),
-          ListTile(
-            title: const Text('Language'),
-            onTap: () {
-              // Aktion für Item 3
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('About App'),
-            onTap: () {
-              // Aktion für Item 4
-              Navigator.pop(context);
-            },
+          // ExpansionTile für Settings
+          ExpansionTile(
+            title: const Text('Settings'),
+            children: [
+              ListTile(
+                title: const Text('Language'),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => const DrawerLanguage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('About App'),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => const DrawerAboutApp()),
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),
