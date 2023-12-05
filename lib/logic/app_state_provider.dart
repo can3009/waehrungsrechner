@@ -6,6 +6,7 @@ final refAppStateProvider =
     NotifierProvider<AppStateProvider, AppState>(() => AppStateProvider());
 
 //!
+
 class AppStateProvider extends Notifier<AppState> {
   @override
   AppState build() {

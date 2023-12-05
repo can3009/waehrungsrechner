@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:waehrungsrechner/gui/ansicht/drawer/app_drawer.dart';
 
 import 'package:waehrungsrechner/logic/app_state_provider.dart';
 // import '/projects/waehrungsrechner/lib/logic/app_state_provider.dart';
@@ -13,9 +14,10 @@ class HomeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appStateProvider = ref.read(refAppStateProvider.notifier);
     return Scaffold(
+      drawer: MyDrawer(),
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.indigo[100],
         elevation: 9,
         title: const Text(
           'Währungsumrechner',
@@ -115,6 +117,10 @@ class HomeView extends ConsumerWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorite',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.history),
             label: 'History',
           ),
@@ -123,6 +129,8 @@ class HomeView extends ConsumerWidget {
             label: 'Settings',
           ),
         ],
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.indigo[100],
         currentIndex: 0,
         onTap: (index) {
           // switch screen based on index
