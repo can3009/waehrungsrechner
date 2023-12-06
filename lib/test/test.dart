@@ -1,7 +1,7 @@
 import '../data/models/models.dart';
 
 class TestClass extends StatelessWidget {
-  TestClass();
+  const TestClass({super.key});
 
   @override
   Widget build(BuildContext context) => Column(

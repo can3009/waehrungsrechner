@@ -14,9 +14,7 @@ class Currency {
       required this.symbol,
       required this.exchangeRate});
 
-  double umrechnen(int betrag) {
-    return betrag * exchangeRate;
-  }
+  double umrechnen(int betrag) => betrag * exchangeRate;
 }
 
 

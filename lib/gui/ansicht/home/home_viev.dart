@@ -6,53 +6,55 @@ import 'package:waehrungsrechner/gui/ansicht/drawer/app_drawer.dart';
 import 'dart:convert';
 
 import 'package:waehrungsrechner/gui/ansicht/history_view/history.dart';
+import 'package:waehrungsrechner/gui/ansicht/home/home_button/like_button.dart';
 import 'package:waehrungsrechner/logic/app_state_provider.dart';
 // import '/projects/waehrungsrechner/lib/logic/app_state_provider.dart';
 
 import '../../widgets/country_card.dart';
 import 'package:http/http.dart' as http;
+import 'package:waehrungsrechner/logic/app_state_provider.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
   //get conversion rates
 
-  void getConversion() async {
-    String apiUrl =
-        'https://v6.exchangerate-api.com/v6/873a7cab0f3c067a9736193a/latest/USD';
+  // void getConversion() async {
+  //   String apiUrl =
+  //       'https://v6.exchangerate-api.com/v6/873a7cab0f3c067a9736193a/latest/USD';
 
-    try {
-      http.Response response = await http.get(Uri.parse(apiUrl));
+  //   try {
+  //     http.Response response = await http.get(Uri.parse(apiUrl));
 
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = json.decode(response.body);
+  //     if (response.statusCode == 200) {
+  //       Map<String, dynamic> data = json.decode(response.body);
 
-        if (data['result'] == 'success') {
-          String baseCode = data['base_code'];
-          Map<String, dynamic> conversionRates = data['conversion_rates'];
+  //       if (data['result'] == 'success') {
+  //         String baseCode = data['base_code'];
+  //         Map<String, dynamic> conversionRates = data['conversion_rates'];
 
-          // Accessing conversion rates for each currency
+  //         // Accessing conversion rates for each currency
 
-          double usdToAED =
-              conversionRates['AED']; // Example: USD to AED conversion rate
+  //         double usdToAED =
+  //             conversionRates['AED']; // Example: USD to AED conversion rate
 
-          // Print base code and conversion rates
-          print('Base Code: $baseCode');
-          print('Conversion rate from USD to AED: $usdToAED');
-        } else {
-          print('API request failed: ${data['error']}');
-        }
-      } else {
-        print('Request failed with status: ${response.statusCode}');
-      }
-    } catch (error) {
-      print('Error fetching data: $error');
-    }
-  }
+  //         // Print base code and conversion rates
+  //         print('Base Code: $baseCode');
+  //         print('Conversion rate from USD to AED: $usdToAED');
+  //       } else {
+  //         print('API request failed: ${data['error']}');
+  //       }
+  //     } else {
+  //       print('Request failed with status: ${response.statusCode}');
+  //     }
+  //   } catch (error) {
+  //     print('Error fetching data: $error');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLiked = false;
     final appStateProvider = ref.read(refAppStateProvider.notifier);
-    getConversion();
     return Scaffold(
       drawer: MyDrawer(),
       backgroundColor: Colors.white,
@@ -78,36 +80,14 @@ class HomeView extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      height: 200,
+                      height: 130,
                     ),
                   ),
-                  InkWell(
-                    child: Container(
-                      height: 55,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.indigo[100],
-                        borderRadius: BorderRadius.circular(100),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.indigo.withOpacity(0.2),
-                            spreadRadius: 4,
-                            blurRadius: 100,
-                            offset: const Offset(2, 1),
-                          )
-                        ],
-                      ),
-                      child: const Center(
-                        //!like button
-                        child: Icon(
-                          Icons.heart_broken_sharp,
-                          size: 30,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ),
+                  LikeButton(
+                    isLiked: isLiked,
                     onTap: () {
-                      //perform action on like button click
+                      //Hier können sie Aktionen für den Like-Button in
+                      isLiked = !isLiked;
                     },
                   ),
                   Expanded(
@@ -148,7 +128,7 @@ class HomeView extends ConsumerWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.large(
+      floatingActionButton: FloatingActionButton.extended(
         //aktion für float button
         onPressed: () {
           Navigator.push(
@@ -156,14 +136,12 @@ class HomeView extends ConsumerWidget {
             MaterialPageRoute(builder: (context) => const HistoryViewState()),
           );
         },
-        child: const Icon(Icons.history_edu),
-        backgroundColor: Colors.indigo,
+        label: const Text('History'),
+        backgroundColor: Colors.indigo[100],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
-
-
 
 //https://www.zeitzonen.de/

@@ -67,7 +67,7 @@ linter:
     camel_case_extensions: true
     camel_case_types: true
     cancel_subscriptions: true
-    cascade_invocations: true
+    cascade_invocations: false
     comment_references: true
     constant_identifier_names: true
     control_flow_in_finally: true

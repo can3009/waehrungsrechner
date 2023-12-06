@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'dart:developer';
+
+import 'package:http/http.dart';
 
 import '../data/models/models.dart';
 
@@ -95,6 +98,44 @@ class AppStateProvider extends Notifier<AppState> {
     } else {
       // currency = appState.toCurrency;
       state = state.copyWith(to: country?.name);
+    }
+  }
+
+  ///Funktion, um Währungsumrechnungsinformationen von einer externen API abzurufen
+
+  void getConversion() async {
+    ///API-URL für die ExchangeRate-API (USD als Basiswährung)
+    final apiUrl =
+        'https://v6.exchangerate-api.com/v6/873a7cab0f3c067a9736193a/latest/USD';
+
+    try {
+      ///Sendet eine HTTP-GET-Anfrage an die API und wartet auf die Antwort
+      Response response = await get(Uri.parse(apiUrl));
+
+      ///Überprüft den Statuscode der Antwort
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
+
+        if (data['result'] == 'success') {
+          String baseCode = data['base_code'];
+          Map<String, dynamic> conversionRates = data['conversion_rates'];
+
+          // Accessing conversion rates for each currency
+
+          double usdToAED =
+              conversionRates['AED']; // Example: USD to AED conversion rate
+
+          // Print base code and conversion rates
+          print('Base Code: $baseCode');
+          print('Conversion rate from USD to AED: $usdToAED');
+        } else {
+          print('API request failed: ${data['error']}');
+        }
+      } else {
+        print('Request failed with status: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error fetching data: $error');
     }
   }
 }
