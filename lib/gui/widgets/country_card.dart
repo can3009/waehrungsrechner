@@ -38,18 +38,18 @@ class CountryCard extends ConsumerWidget {
       return Text('diese Währung wurde nicht gefunden');
     }
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: Container(
-        height: 170,
+        height: 180,
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                  color: Colors.indigo.withOpacity(0.3),
-                  spreadRadius: 2,
-                  blurRadius: 4,
-                  offset: const Offset(0, 3))
+                  color: Colors.indigo.withOpacity(0.7),
+                  spreadRadius: 4,
+                  blurRadius: 7,
+                  offset: const Offset(0, 2))
             ]),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -63,12 +63,12 @@ class CountryCard extends ConsumerWidget {
                     // child: Image.asset('gb-flag.png'),
                     child: Image.asset(
                       country.urlFlag,
-                      height: 50,
-                      width: 50,
+                      height: 60,
+                      width: 60,
                     ),
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 15,
                   ),
                   Expanded(
                     child: Column(
@@ -107,7 +107,7 @@ class CountryCard extends ConsumerWidget {
               ),
               TextField(
                 style:
-                    const TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.allow(

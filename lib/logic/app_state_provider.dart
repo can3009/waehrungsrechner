@@ -122,6 +122,8 @@ class AppStateProvider extends Notifier<AppState> {
 
           // Accessing conversion rates for each currency
 
+          //Erstelle eine Liste der API-Währungen
+
           double usdToAED =
               conversionRates['AED']; // Example: USD to AED conversion rate
 
