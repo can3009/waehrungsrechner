@@ -8,7 +8,14 @@ import 'package:waehrungsrechner/gui/ansicht/drawer/drawer_graph.dart';
 import 'package:waehrungsrechner/gui/ansicht/drawer/drawer_language.dart';
 
 // ignore: public_member_api_docs
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+bool isDarkMode = false;
+
+class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -17,7 +24,7 @@ class MyDrawer extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 157, 163, 197),
+              color: Color.fromARGB(255, 58, 116, 204),
             ),
             child: Text(
               'Währungs-Rechner',
@@ -30,6 +37,7 @@ class MyDrawer extends StatelessWidget {
 
           ListTile(
             title: const Text('Favorite'),
+            leading: Icon(Icons.favorite),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const DrawerFav()),
@@ -40,6 +48,7 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             title: const Text('Graph '),
+            leading: Icon(Icons.show_chart_outlined),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const DrawerGraph()),
@@ -50,9 +59,11 @@ class MyDrawer extends StatelessWidget {
           // ExpansionTile für Settings
           ExpansionTile(
             title: const Text('Settings'),
+            leading: Icon(Icons.settings),
             children: [
               ListTile(
                 title: const Text('Language'),
+                leading: Icon(Icons.language),
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -62,6 +73,7 @@ class MyDrawer extends StatelessWidget {
               ),
               ListTile(
                 title: const Text('About App'),
+                leading: Icon(Icons.local_offer_rounded),
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -69,6 +81,16 @@ class MyDrawer extends StatelessWidget {
                   );
                 },
               ),
+              ListTile(
+                title: Text('Dark mode'),
+                leading:
+                    isDarkMode ? Icon(Icons.light_mode) : Icon(Icons.dark_mode),
+                onTap: () {
+                  setState(() {
+                    isDarkMode = !isDarkMode;
+                  });
+                },
+              )
             ],
           ),
         ],

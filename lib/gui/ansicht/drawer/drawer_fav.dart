@@ -11,13 +11,14 @@ class DrawerFavState extends State<DrawerFav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[100],
       appBar: AppBar(
         title: Text('My Favorites'),
       ),
       body: Container(
-        height: 100,
-        width: 100,
-        color: Colors.indigo,
+        height: 1000,
+        width: 120,
+        color: Colors.black,
       ),
     );
   }

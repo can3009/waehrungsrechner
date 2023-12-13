@@ -119,7 +119,7 @@ class AppStateProvider extends Notifier<AppState> {
         if (data['result'] == 'success') {
           String baseCode = data['base_code'];
           Map<String, dynamic> conversionRates = data['conversion_rates'];
-
+          print('meinemap: $conversionRates');
           // Accessing conversion rates for each currency
 
           //Erstelle eine Liste der API-Währungen
@@ -141,3 +141,10 @@ class AppStateProvider extends Notifier<AppState> {
     }
   }
 }
+
+
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
+

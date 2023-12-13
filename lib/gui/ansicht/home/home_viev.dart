@@ -9,6 +9,7 @@ import 'package:waehrungsrechner/gui/ansicht/history_view/history.dart';
 import 'package:waehrungsrechner/gui/ansicht/home/home_button/like_button.dart';
 import 'package:waehrungsrechner/logic/app_state_provider.dart';
 // import '/projects/waehrungsrechner/lib/logic/app_state_provider.dart';
+import 'package:waehrungsrechner/gui/ansicht/drawer/app_drawer.dart';
 
 import '../../widgets/country_card.dart';
 import 'package:http/http.dart' as http;
@@ -57,14 +58,15 @@ class HomeView extends ConsumerWidget {
     final appStateProvider = ref.read(refAppStateProvider.notifier);
     return Scaffold(
       drawer: MyDrawer(),
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? Colors.black : Colors.blue[100],
       appBar: AppBar(
-        backgroundColor: Colors.indigo[100],
+        backgroundColor: Colors.indigo[120],
         elevation: 9,
         title: const Text(
-          'Währungsumrechner',
-          style: TextStyle(color: Colors.black),
+          'Curreny  Converter ',
+          style: TextStyle(color: Colors.white),
         ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -76,7 +78,6 @@ class HomeView extends ConsumerWidget {
                 height: 35,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: Container(
@@ -91,7 +92,7 @@ class HomeView extends ConsumerWidget {
                     },
                   ),
                   Expanded(
-                    flex: 0,
+                    flex: 7,
                     child: InkWell(
                       child: Container(
                         height: 50,
@@ -101,12 +102,13 @@ class HomeView extends ConsumerWidget {
                           border: Border.all(color: Colors.indigo),
                         ),
                         child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Switch Currencies',
                               style: TextStyle(
                                 color: Colors.indigo,
-                                fontSize: 17,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500,
                               ),
                             )
@@ -114,6 +116,7 @@ class HomeView extends ConsumerWidget {
                         ),
                       ),
                       onTap: () {
+                        appStateProvider.getConversion();
                         appStateProvider.switchFromTo();
                       },
                     ),
@@ -128,18 +131,39 @@ class HomeView extends ConsumerWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        //aktion für float button
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HistoryViewState()),
-          );
-        },
-        label: const Text('History'),
-        backgroundColor: Colors.indigo[100],
+      floatingActionButton: Stack(
+        children: [
+          // Floating Action Button links unten
+          Positioned(
+            bottom: 41,
+            left: 40,
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                //Hier können sie Aktionen für den Like-Button in
+                //Ihrer Anwendung definieren.
+              },
+              label: const Text('Favorite'),
+              backgroundColor: Colors.indigo[100],
+            ),
+          ),
+          // Floating Action Button rechts unten
+          Positioned(
+            bottom: 40,
+            left: MediaQuery.of(context).size.width - 100,
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HistoryViewState()),
+                );
+              },
+              label: const Text('History'),
+              backgroundColor: Colors.indigo[100],
+            ),
+          ),
+        ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

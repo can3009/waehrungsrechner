@@ -13,6 +13,7 @@ class __HistoryViewStateState extends State<HistoryViewState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[100],
       appBar: AppBar(
         title: Text('Last used'),
       ),
