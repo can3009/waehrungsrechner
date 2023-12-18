@@ -15,7 +15,12 @@ class HomeView extends ConsumerWidget {
   //get conversion rates
 
 void getConversion() async {
-  String apiUrl = 'https://v6.exchangerate-api.com/v6/873a7cab0f3c067a9736193a/latest/USD';
+  String apiKey = '873a7cab0f3c067a9736193a'; 
+
+  String baseCurrency = 'EUR';
+  String targetCurrency = 'GBP';
+
+  String apiUrl = 'https://v6.exchangerate-api.com/v6/$apiKey/pair/$baseCurrency/$targetCurrency';
 
   try {
     http.Response response = await http.get(Uri.parse(apiUrl));
@@ -25,16 +30,13 @@ void getConversion() async {
 
       if (data['result'] == 'success') {
         String baseCode = data['base_code'];
-        Map<String, dynamic> conversionRates = data['conversion_rates'];
+        String targetCode = data['target_code'];
+        double conversionRate = data['conversion_rate'];
 
-        // Accessing conversion rates for each currency
-
-        double usdToAED = conversionRates['AED']; // Example: USD to AED conversion rate
-
-        // Print base code and conversion rates
+        // Print base code, target code, and conversion rate
         print('Base Code: $baseCode');
-        print('Conversion rate from USD to AED: $usdToAED');
-        
+        print('Target Code: $targetCode');
+        print('Conversion Rate: $conversionRate');
       } else {
         print('API request failed: ${data['error']}');
       }
