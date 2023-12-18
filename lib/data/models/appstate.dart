@@ -17,7 +17,6 @@ class AppState {
   final List<Country> countries;
   final List<Currency> currencies;
   final double input;
-
   //! KOnstruktor der klasse appstate
   AppState({
     required this.to,

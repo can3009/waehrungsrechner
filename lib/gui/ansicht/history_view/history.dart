@@ -17,6 +17,17 @@ class __HistoryViewStateState extends State<HistoryViewState> {
       appBar: AppBar(
         title: Text('Last used'),
       ),
+      body: ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            color: Colors.blue[100],
+            child: ListTile(
+              trailing: Icon(Icons.history),
+            ),
+          );
+        },
+        itemCount: 6,
+      ),
     );
   }
 }

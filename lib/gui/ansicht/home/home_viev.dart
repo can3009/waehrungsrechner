@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:waehrungsrechner/gui/ansicht/drawer/app_drawer.dart';
+import 'package:waehrungsrechner/gui/ansicht/history_view/favorite.dart';
 import 'dart:convert';
 
 import 'package:waehrungsrechner/gui/ansicht/history_view/history.dart';
@@ -14,6 +15,7 @@ import 'package:waehrungsrechner/gui/ansicht/drawer/app_drawer.dart';
 import '../../widgets/country_card.dart';
 import 'package:http/http.dart' as http;
 import 'package:waehrungsrechner/logic/app_state_provider.dart';
+import 'package:waehrungsrechner/gui/ansicht/history_view/favorite.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -56,6 +58,7 @@ class HomeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool isLiked = false;
     final appStateProvider = ref.read(refAppStateProvider.notifier);
+
     return Scaffold(
       drawer: MyDrawer(),
       backgroundColor: isDarkMode ? Colors.black : Colors.blue[100],
@@ -139,8 +142,13 @@ class HomeView extends ConsumerWidget {
             left: 40,
             child: FloatingActionButton.extended(
               onPressed: () {
-                //Hier können sie Aktionen für den Like-Button in
-                //Ihrer Anwendung definieren.
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => FavoriteViewState())
+                        //Hier können sie Aktionen für den Like-Button in
+                        //Ihrer Anwendung definieren.
+                        ));
               },
               label: const Text('Favorite'),
               backgroundColor: Colors.indigo[100],

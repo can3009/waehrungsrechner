@@ -12,66 +12,64 @@ final refAppStateProvider =
 
 class AppStateProvider extends Notifier<AppState> {
   @override
-  AppState build() {
-    return AppState(
-      input: 1.5,
-      currencies: [
-        Currency(
-          name: 'Dollar',
-          code: 'USD',
-          isCypto: false,
-          symbol: '\$',
-          exchangeRate: 1.1,
-        ),
-        Currency(
-          name: 'Euro',
-          code: 'EUR',
-          isCypto: false,
-          symbol: '€',
-          exchangeRate: 1.0,
-        ),
-        Currency(
-          name: 'Pound',
-          code: 'GBP',
-          isCypto: false,
-          symbol: '£',
-          exchangeRate: 0.78,
-        ),
-        Currency(
-            name: 'Arabische Dirham',
-            code: 'AED',
+  AppState build() => AppState(
+        input: 1.5,
+        currencies: [
+          Currency(
+            name: 'Dollar',
+            code: 'USD',
             isCypto: false,
-            symbol: 'د. إ',
-            exchangeRate: 0.25),
-      ],
-      to: 'EU',
-      countries: [
-        Country(
-          name: 'USA',
-          urlFlag: 'assets/us-flag.png',
-          // urlFlag:
-          //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYmGahfEnGMsDpFFmpF61UdX225_aXWAwQz2n6KYiKKzMH2ZgreTcIg0C3gKWGDUQOyaU&usqp=CAU',
-          currency: 'USD',
-        ),
-        Country(
-          name: 'EU',
-          urlFlag: 'assets/eu-flag.png',
-          // urlFlag:
-          //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4ZbRbmPx32hgxg3G_l1g4JGX0VjbTD-ZJXoT_TNw507DbN6nqaaap98AqETu4PcbSad4&usqp=CAU',
-          currency: 'EUR',
-        ),
-        Country(
-          name: 'ENG',
-          urlFlag: 'assets/gb-flag.png',
-          // urlFlag:
-          //     'https://media.istockphoto.com/id/854115776/de/foto/flagge-von-england.jpg?s=612x612&w=0&k=20&c=2WZv964ANrMWsdGPnVlUJ56q49NKe6LpZUduHJtWT7M=',
-          currency: 'GBP',
-        ),
-        Country(name: 'Arabisch', urlFlag: 'urlFlag', currency: 'AED'),
-      ],
-      from: 'USA',
-    );
-  }
+            symbol: '\$',
+            exchangeRate: 1.1,
+          ),
+          Currency(
+            name: 'Euro',
+            code: 'EUR',
+            isCypto: false,
+            symbol: '€',
+            exchangeRate: 1.0,
+          ),
+          Currency(
+            name: 'Pound',
+            code: 'GBP',
+            isCypto: false,
+            symbol: '£',
+            exchangeRate: 0.78,
+          ),
+          Currency(
+              name: 'Arabische Dirham',
+              code: 'AED',
+              isCypto: false,
+              symbol: 'د. إ',
+              exchangeRate: 0.25),
+        ],
+        to: 'EU',
+        countries: [
+          Country(
+            name: 'USA',
+            urlFlag: 'assets/us-flag.png',
+            // urlFlag:
+            //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYmGahfEnGMsDpFFmpF61UdX225_aXWAwQz2n6KYiKKzMH2ZgreTcIg0C3gKWGDUQOyaU&usqp=CAU',
+            currency: 'USD',
+          ),
+          Country(
+            name: 'EU',
+            urlFlag: 'assets/eu-flag.png',
+            // urlFlag:
+            //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4ZbRbmPx32hgxg3G_l1g4JGX0VjbTD-ZJXoT_TNw507DbN6nqaaap98AqETu4PcbSad4&usqp=CAU',
+            currency: 'EUR',
+          ),
+          Country(
+            name: 'ENG',
+            urlFlag: 'assets/gb-flag.png',
+            // urlFlag:
+            //     'https://media.istockphoto.com/id/854115776/de/foto/flagge-von-england.jpg?s=612x612&w=0&k=20&c=2WZv964ANrMWsdGPnVlUJ56q49NKe6LpZUduHJtWT7M=',
+            currency: 'GBP',
+          ),
+          Country(name: 'Arabisch', urlFlag: 'urlFlag', currency: 'AED'),
+        ],
+        from: 'USA',
+      );
 
 //! Switchfromto Methode Tauscht die Ausgangs und Zielwährung aus,
 //! Indem sie den Zustand mit den neuen werten aktualisiert.
@@ -120,6 +118,7 @@ class AppStateProvider extends Notifier<AppState> {
           String baseCode = data['base_code'];
           Map<String, dynamic> conversionRates = data['conversion_rates'];
           print('meinemap: $conversionRates');
+          print('${conversionRates["AED"]}');
           // Accessing conversion rates for each currency
 
           //Erstelle eine Liste der API-Währungen
